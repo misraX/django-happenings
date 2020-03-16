@@ -219,7 +219,6 @@ class Event(models.Model):
                     ((cancellation.date == date) for cancellation in self.cancellations.all())
                 )
             except (AttributeError, KeyError):
-                result = False
                 result = self.cancellations.filter(date=date).exists()
 
             self._check_if_cancelled_cache[date] = result
